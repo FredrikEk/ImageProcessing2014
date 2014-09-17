@@ -1,0 +1,63 @@
+Image processing lecture 2
+
+First: Slides
+
+Ex 4a
+
+
+Apply filter
+0    1/8   0
+1/8  1/2  1/8
+0    1/8   0
+
+Before Filter
+00000
+01110
+01810
+01110
+00000
+
+första*först+höger*höger etc
+
+rutan top left:
+0*0+1/8*0+0*0+
+1/8*0+1/2*1+1/8*1+
+0*0+1/8*1+0*8
+
+samma på alla rutor
+
+Rounda neråt till närmsta integer
+
+After filter
+010
+141
+010
+
+
+Ex 4d
+
+Sum should always be zero so doesnt matter if 1 and -4 or vice verca.
+
+Laplacian filter
+0  -1  0
+-1  4 -1
+0  -1  0
+
+=
+
+0  -1  0
+-1 -1 -1 (-5)
+0  -1  0
+
++
+
+0  0  0
+0  1  0 (+5)
+0  0  0
+
+
+Studio Exercise:
+
+Gaussian filter: y = \sigma ^ -x^2 / 20^\sigma
+
+\sigma = Standard deviation

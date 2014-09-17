@@ -1,0 +1,18 @@
+Image processing Lecture 3 - Edge detection and Noise Reduction
+
+A4b
+
+Image:
+00000
+01110
+01810
+01110
+00000
+
+Move filter around from left/top to right/bottom and take median
+
+Output
+
+010
+111
+010
