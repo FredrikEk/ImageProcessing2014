@@ -3,18 +3,20 @@ function shift = shiftPictureRight(image1, image2)
 right = 0;
 answer = Inf;
 for i = 1:50
-
-    r1 = image1{1,1,1};
-    g1 = image1{1,1,2};
-    b1 = image1{1,1,3};
-
-    r2 = image2{1,1,1};
-    g2 = image2{1,1,2};
-    b2 = image2{1,1,3};
     
-    %r1 = r1(1:(end-i), :);
-    %r2 = r2(i+1:end, :);
+    height = size(image1{1,1,1}, 1);
+    width = size(image1{1,1,1}, 2);
+    
+    r1 = imcrop(image1{1,1,1}, [width*0.2 height*0.2 width*0.8 height*0.8]);
+    g1 = imcrop(image1{1,1,2}, [width*0.2 height*0.2 width*0.8 height*0.8]);
+    b1 = imcrop(image1{1,1,3}, [width*0.2 height*0.2 width*0.8 height*0.8]);
 
+    r2 = imcrop(image2{1,1,1}, [width*0.2 height*0.2 width*0.8 height*0.8]);
+    g2 = imcrop(image2{1,1,2}, [width*0.2 height*0.2 width*0.8 height*0.8]);
+    b2 = imcrop(image2{1,1,3}, [width*0.2 height*0.2 width*0.8 height*0.8]);
+    
+    r1 = r1(:, 1:(end-(i-1)));
+    r2 = r2(:, i:end);
     
     g1 = g1(:, 1:(end-(i-1)));
     g2 = g2(:, i:end);
@@ -31,11 +33,19 @@ for i = 1:50
     HnGreen2 = imhist(g2)./numel(g2);
     HnBlue2 = imhist(b2)./numel(b2);
 
+    %HnRed1 = imhist(r1);
+    %HnGreen1 = imhist(g1);
+    %HnBlue1 = imhist(b1);
+    
+    %HnRed2 = imhist(r2);
+    %HnGreen2 = imhist(g2);
+    %HnBlue2 = imhist(b2);
+    
     FRed = sum((HnRed1-HnRed2).^2);
     FGreen = sum((HnGreen1-HnGreen2).^2);
     FBlue = sum((HnBlue1-HnBlue2).^2);
 
-    F = FRed + FGreen + FBlue;
+    F = FGreen + FBlue;
 
     if(F < answer)
        answer = F; 

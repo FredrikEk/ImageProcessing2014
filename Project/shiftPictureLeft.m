@@ -13,9 +13,8 @@ for i = 1:50
     g2 = image2{1,1,2};
     b2 = image2{1,1,3};
     
-    %r1 = r1(1:(end-i), :);
-    %r2 = r2(i+1:end, :);
-
+    r1 = r1(:, i:end);
+    r2 = r2(:, 1:(end-(i-1)));
     
     g1 = g1(:, i:end);
     g2 = g2(:, 1:(end-(i-1)));
@@ -36,7 +35,7 @@ for i = 1:50
     FGreen = sum((HnGreen1-HnGreen2).^2);
     FBlue = sum((HnBlue1-HnBlue2).^2);
 
-    F = FRed + FGreen + FBlue;
+    F = FGreen + FBlue;
     
     if(F < answer2)
        answer2 = F; 
